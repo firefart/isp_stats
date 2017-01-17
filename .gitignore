@@ -1,0 +1,5 @@
+.git
+.DS_Store
+.DS_Store?
+ansible/site.retry
+.vagrant/

@@ -1,0 +1,57 @@
+---
+- name: add user
+  user:
+    name: stats
+    comment: "stats"
+    createhome: no
+    shell: /usr/sbin/nologin
+
+- name: create install dir
+  file:
+    path: /opt/ispstats
+    state: directory
+    owner: stats
+    group: stats
+
+- name: copy application
+  copy:
+    src: ../stats.py
+    dest: /opt/ispstats/stats.py
+    owner: stats
+    group: stats
+    mode: 0754
+
+- name: checkout speedtest-cli
+  git:
+    repo: https://github.com/sivel/speedtest-cli.git
+    dest: /opt/speedtest-cli
+
+- name: change ownership of speedtest-cli
+  file:
+    dest: /opt/speedtest-cli
+    owner: stats
+    group: stats
+    recurse: yes
+  changed_when: false
+
+- name: install ispstats systemd unit file
+  template:
+    src: ispstats.service
+    dest: /etc/systemd/system/ispstats.service
+    mode: 0664
+    owner: root
+    group: root
+
+- name: install ispstats systemd timer file
+  template:
+    src: ispstats.timer
+    dest: /etc/systemd/system/ispstats.timer
+    mode: 0664
+    owner: root
+    group: root
+
+- name: start ispstats
+  systemd:
+    state: started
+    name: ispstats.timer
+    daemon_reload: yes

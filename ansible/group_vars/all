@@ -1,0 +1,12 @@
+---
+server_hostname: ispstats.firefart.at
+
+db_name: stats
+
+influxdb_username: admin
+influxdb_password: O5FUkS8aqQ9miwFGb8qaAvlmwBG34B
+
+# password has to be changed manually after setup
+grafana_username: admin
+grafana_password: admin
+grafana_key: 36jPGqwhmXmlx1hLHZLnpjk9dM3R9x

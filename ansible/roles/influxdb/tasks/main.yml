@@ -1,0 +1,21 @@
+---
+- name: Import InfluxDB GPG signing key
+  apt_key: url=https://repos.influxdata.com/influxdb.key state=present
+
+- name: Add InfluxDB repository
+  apt_repository: repo='deb https://repos.influxdata.com/debian jessie stable' state=present
+  notify: update apt cache
+
+- name: Install InfluxDB packages
+  apt: name=influxdb state=present
+  notify: restart influxdb
+
+- name: Copy InfluxDB configuration
+  template: src=influxdb.conf dest=/etc/influxdb/influxdb.conf
+  notify: restart influxdb
+
+- name: Create database
+  influxdb_database:
+    hostname: "127.0.0.1"
+    database_name: "stats"
+    state: present

@@ -1,0 +1,7 @@
+[Unit]
+Description=ISP Stat Script
+
+[Service]
+User=stats
+Group=stats
+ExecStart=/opt/ispstats/stats.py

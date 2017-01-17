@@ -1,0 +1,32 @@
+---
+# This playbook deploys the whole application stack in this site.
+
+- name: apply common configuration to all nodes
+  hosts: all
+  remote_user: root
+  roles:
+    - common
+
+- name: Install and setup InfluxDB
+  hosts: all
+  remote_user: root
+  roles:
+    - influxdb
+
+- name: Install and setup Grafana
+  hosts: all
+  remote_user: root
+  roles:
+    - grafana
+
+- name: Install and setup NGINX
+  hosts: all
+  remote_user: root
+  roles:
+    - nginx
+
+- name: Setup ispstats
+  hosts: all
+  remote_user: root
+  roles:
+    - ispstats

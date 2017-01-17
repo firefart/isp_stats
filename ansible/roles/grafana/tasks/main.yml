@@ -1,0 +1,69 @@
+---
+- name: Import Grafana GPG signing key
+  apt_key: url=https://packagecloud.io/gpg.key state=present
+
+- name: Add Grafana repository
+  apt_repository: repo='deb https://packagecloud.io/grafana/stable/debian/ jessie main' state=present
+  notify: update apt cache
+
+- name: Install Grafana packages
+  apt: name=grafana state=present
+  notify: restart grafana
+
+- name: Copy Grafana configuration
+  template: src=grafana.ini dest=/etc/grafana/grafana.ini
+  notify: restart grafana
+
+# Create data source
+- name: Check if datasource is present
+  uri:
+    url: http://localhost:3000/api/datasources/name/{{ db_name }}
+    user: "{{ grafana_username }}"
+    password: "{{ grafana_password }}"
+    force_basic_auth: yes
+    status_code: 200,404
+  register: grafana_status
+  changed_when: false
+
+- name: Create Datasource if not present
+  uri:
+    url: http://localhost:3000/api/datasources
+    method: POST
+    user: "{{ grafana_username }}"
+    password: "{{ grafana_password }}"
+    force_basic_auth: yes
+    body:
+      name: "{{ db_name }}"
+      type: "influxdb"
+      url: "http://localhost:8086"
+      access: "proxy"
+      isDefault: true
+      database: "{{ db_name }}"
+      user: "{{ influxdb_username }}"
+      password: "{{ influxdb_password }}"
+    status_code: 200
+    body_format: json
+  when: grafana_status.status == 404
+
+- name: Delete dashboard
+  uri:
+    url: http://localhost:3000/api/dashboards/db/isp-stats
+    method: DELETE
+    user: "{{ grafana_username }}"
+    password: "{{ grafana_password }}"
+    status_code: 200,404
+    force_basic_auth: yes
+
+- name: Create dashboard
+  uri:
+    url: http://localhost:3000/api/dashboards/db
+    method: POST
+    user: "{{ grafana_username }}"
+    password: "{{ grafana_password }}"
+    status_code: 200
+    body_format: json
+    force_basic_auth: yes
+    body:
+      dashboard: "{{ lookup('template', 'dashboard.json.j2') }}"
+      overwrite: true
+  changed_when: false
