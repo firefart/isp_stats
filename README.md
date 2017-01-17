@@ -1,5 +1,7 @@
 # ISP STATS
 
+![Grafana](/images/grafana.png?raw=true "Grafana")
+
 ## Using Vagrant
 `vagrant up`
 
