@@ -1,4 +1,10 @@
 ---
+# influxdb config
+- include: influxdb.yml
+
+# grafana config
+- include: grafana.yml
+
 - name: add user
   user:
     name: stats

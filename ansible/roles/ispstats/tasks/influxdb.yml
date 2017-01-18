@@ -1,0 +1,6 @@
+---
+- name: Create database
+  influxdb_database:
+    hostname: "127.0.0.1"
+    database_name: "stats"
+    state: present
