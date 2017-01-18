@@ -16,7 +16,7 @@
         {
           "aliasColors": {},
           "bars": false,
-          "datasource": null,
+          "datasource": "{{ db_name }}",
           "fill": 1,
           "id": 1,
           "legend": {
@@ -45,7 +45,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "alias": "Download Speed",
+              "alias": "$col",
               "dsType": "influxdb",
               "groupBy": [
                 {
@@ -62,7 +62,7 @@
                 }
               ],
               "hide": false,
-              "measurement": "download_speed",
+              "measurement": "speedtest",
               "policy": "default",
               "refId": "A",
               "resultFormat": "time_series",
@@ -70,51 +70,37 @@
                 [
                   {
                     "params": [
-                      "speed"
+                      "download_speed"
                     ],
                     "type": "field"
                   },
                   {
                     "params": [],
                     "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "Download"
+                    ],
+                    "type": "alias"
                   }
-                ]
-              ],
-              "tags": []
-            },
-            {
-              "alias": "Upload Speed",
-              "dsType": "influxdb",
-              "groupBy": [
-                {
-                  "params": [
-                    "auto"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "none"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "hide": false,
-              "measurement": "upload_speed",
-              "policy": "default",
-              "refId": "B",
-              "resultFormat": "time_series",
-              "select": [
+                ],
                 [
                   {
                     "params": [
-                      "speed"
+                      "upload_speed"
                     ],
                     "type": "field"
                   },
                   {
                     "params": [],
                     "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "Upload"
+                    ],
+                    "type": "alias"
                   }
                 ]
               ],
@@ -124,7 +110,7 @@
           "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Download Speed",
+          "title": "Speed",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -171,7 +157,7 @@
       "panels": [
         {
           "columns": [],
-          "datasource": null,
+          "datasource": "{{ db_name }}",
           "fontSize": "100%",
           "id": 2,
           "links": [],
@@ -205,7 +191,7 @@
           ],
           "targets": [
             {
-              "alias": "Download",
+              "alias": "$col",
               "dsType": "influxdb",
               "groupBy": [
                 {
@@ -216,63 +202,57 @@
                 },
                 {
                   "params": [
+                    "server_host"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
                     "none"
                   ],
                   "type": "fill"
                 }
               ],
-              "measurement": "download_speed",
+              "hide": false,
+              "measurement": "speedtest",
               "policy": "default",
               "refId": "A",
-              "resultFormat": "time_series",
+              "resultFormat": "table",
               "select": [
                 [
                   {
                     "params": [
-                      "speed"
+                      "download_speed"
                     ],
                     "type": "field"
                   },
                   {
                     "params": [],
                     "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "Download"
+                    ],
+                    "type": "alias"
                   }
-                ]
-              ],
-              "tags": []
-            },
-            {
-              "alias": "Upload",
-              "dsType": "influxdb",
-              "groupBy": [
-                {
-                  "params": [
-                    "auto"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "none"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "measurement": "upload_speed",
-              "policy": "default",
-              "refId": "B",
-              "resultFormat": "time_series",
-              "select": [
+                ],
                 [
                   {
                     "params": [
-                      "speed"
+                      "upload_speed"
                     ],
                     "type": "field"
                   },
                   {
                     "params": [],
                     "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "Upload"
+                    ],
+                    "type": "alias"
                   }
                 ]
               ],
@@ -280,7 +260,7 @@
             }
           ],
           "title": "Speed",
-          "transform": "timeseries_to_columns",
+          "transform": "table",
           "type": "table"
         }
       ],
@@ -298,7 +278,7 @@
         {
           "aliasColors": {},
           "bars": false,
-          "datasource": null,
+          "datasource": "{{ db_name }}",
           "fill": 1,
           "id": 3,
           "legend": {
@@ -340,7 +320,7 @@
                   "type": "fill"
                 }
               ],
-              "measurement": "ping",
+              "measurement": "speedtest",
               "policy": "default",
               "refId": "A",
               "resultFormat": "time_series",
@@ -348,7 +328,7 @@
                 [
                   {
                     "params": [
-                      "latency"
+                      "ping"
                     ],
                     "type": "field"
                   },
@@ -410,7 +390,7 @@
       "panels": [
         {
           "columns": [],
-          "datasource": null,
+          "datasource": "{{ db_name }}",
           "fontSize": "100%",
           "id": 4,
           "links": [],
@@ -451,7 +431,7 @@
               "measurement": "errors",
               "policy": "default",
               "refId": "A",
-              "resultFormat": "time_series",
+              "resultFormat": "table",
               "select": [
                 [
                   {
@@ -515,5 +495,5 @@
   },
   "timezone": "browser",
   "title": "ISP Stats",
-  "version": 1
+  "version": 0
 }
