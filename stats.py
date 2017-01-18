@@ -5,6 +5,8 @@ import json
 from influxdb import InfluxDBClient
 import subprocess
 
+print("Starting Speedtest...")
+
 p = subprocess.Popen(["/opt/speedtest-cli/speedtest.py", "--json"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 stdout, stderr = p.communicate()
 
