@@ -17,6 +17,7 @@ For setting up the machine you need a linux machine because ansible does not run
 * `ansible-playbook -i ansible/hosts ansible/site.yml`
 * Open `http://ÌP/dashboard/db/isp-stats` in your browser
 * The admin User is `admin`, the password can be found in `ansible/grafana_password` (do not delete this file!)
+* All passwords and keys are generated on the first run so there are no default passwords to change after installation
 
 ## Using Vagrant
 `vagrant up`
