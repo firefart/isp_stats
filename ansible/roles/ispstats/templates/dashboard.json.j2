@@ -104,7 +104,13 @@
                   }
                 ]
               ],
-              "tags": []
+              "tags": [
+                {
+                  "key": "server_host",
+                  "operator": "=~",
+                  "value": "/^$Server$/"
+                }
+              ]
             }
           ],
           "thresholds": [],
@@ -338,7 +344,13 @@
                   }
                 ]
               ],
-              "tags": []
+              "tags": [
+                {
+                  "key": "server_host",
+                  "operator": "=~",
+                  "value": "/^$Server$/"
+                }
+              ]
             }
           ],
           "thresholds": [],
@@ -462,7 +474,33 @@
   "style": "dark",
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "{{ db_name }}",
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "Server",
+        "options": [],
+        "query": "show tag values from speedtest with key = \"server_host\"",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
   },
   "time": {
     "from": "now-6h",
