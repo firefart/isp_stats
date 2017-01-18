@@ -9,42 +9,42 @@
 
 - name: add user
   user:
-    name: stats
-    comment: "stats"
+    name: "{{ ispstats_user }}"
+    comment: "User for ISP Stats"
     createhome: no
     shell: /usr/sbin/nologin
 
 - name: create install dir
   file:
-    path: /opt/ispstats
+    path: "{{ ispstats_path }}"
     state: directory
-    owner: stats
-    group: stats
+    owner: "{{ ispstats_user }}"
+    group: "{{ ispstats_user }}"
 
 - name: copy application
-  copy:
+  template:
     src: ../stats.py
-    dest: /opt/ispstats/stats.py
-    owner: stats
-    group: stats
+    dest: "{{ ispstats_path }}/stats.py"
+    owner: "{{ ispstats_user }}"
+    group: "{{ ispstats_user }}"
     mode: 0754
 
 - name: checkout speedtest-cli
   git:
-    repo: https://github.com/sivel/speedtest-cli.git
-    dest: /opt/speedtest-cli
+    repo: "{{ speedtest_repo }}"
+    dest: "{{ speedtest_cli_path }}"
 
 - name: change ownership of speedtest-cli
   file:
-    dest: /opt/speedtest-cli
-    owner: stats
-    group: stats
+    dest: "{{ speedtest_cli_path }}"
+    owner: "{{ ispstats_user }}"
+    group: "{{ ispstats_user }}"
     recurse: yes
   changed_when: false
 
 - name: install ispstats systemd unit file
   template:
-    src: ispstats.service
+    src: ispstats.service.j2
     dest: /etc/systemd/system/ispstats.service
     mode: 0664
     owner: root
@@ -52,7 +52,7 @@
 
 - name: install ispstats systemd timer file
   template:
-    src: ispstats.timer
+    src: ispstats.timer.j2
     dest: /etc/systemd/system/ispstats.timer
     mode: 0664
     owner: root

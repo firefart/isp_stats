@@ -13,5 +13,5 @@
   notify: restart influxdb
 
 - name: Copy InfluxDB configuration
-  template: src=influxdb.conf dest=/etc/influxdb/influxdb.conf
+  template: src=influxdb.conf.j2 dest=/etc/influxdb/influxdb.conf
   notify: restart influxdb

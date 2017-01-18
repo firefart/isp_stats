@@ -2,5 +2,5 @@
 - name: Create database
   influxdb_database:
     hostname: "127.0.0.1"
-    database_name: "stats"
+    database_name: "{{ db_name }}"
     state: present

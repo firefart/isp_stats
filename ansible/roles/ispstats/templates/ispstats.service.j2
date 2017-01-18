@@ -1,0 +1,7 @@
+[Unit]
+Description=ISP Stat Script
+
+[Service]
+User={{ ispstats_user }}
+Group={{ ispstats_user }}
+ExecStart={{ ispstats_path }}/stats.py

@@ -13,5 +13,5 @@
   notify: restart grafana
 
 - name: Copy Grafana configuration
-  template: src=grafana.ini dest=/etc/grafana/grafana.ini
+  template: src=grafana.ini.j2 dest=/etc/grafana/grafana.ini
   notify: restart grafana

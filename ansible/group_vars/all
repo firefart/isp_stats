@@ -13,3 +13,15 @@ ntp_servers:
   - time2.google.com
   - time3.google.com
   - time4.google.com
+
+ispstats_user: stats
+
+ispstats_path: /opt/ispstats
+speedtest_cli_path: /opt/speedtest-cli
+
+speedtest_repo: https://github.com/sivel/speedtest-cli.git
+
+# how often should the speedtest run?
+#   1h = every 1 hour
+#   10m = every 10 minutes
+run_interval: 1h

@@ -1,13 +1,16 @@
 #!/usr/bin/env python
 
-import sys
 import json
 from influxdb import InfluxDBClient
 import subprocess
 
+DATABASE = "{{ db_name }}"
+DB_USER = "{{ influxdb_username }}"
+DB_PW = "{{ influxdb_password }}"
+
 print("Starting Speedtest...")
 
-p = subprocess.Popen(["/opt/speedtest-cli/speedtest.py", "--json"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+p = subprocess.Popen(["{{ speedtest_cli_path }}/speedtest.py", "--json"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 stdout, stderr = p.communicate()
 
 errors = []
@@ -54,5 +57,5 @@ for e in errors:
 
 print("Writing to DB:\n{}".format(data))
 
-influx = InfluxDBClient("127.0.0.1", 8086, "admin", "admin", "stats")
+influx = InfluxDBClient("127.0.0.1", 8086, DB_USER, DB_PW, DATABASE)
 influx.write_points(data)
