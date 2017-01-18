@@ -1,4 +1,7 @@
 ---
+- name: install system updates
+  apt: upgrade=dist update_cache=yes
+
 - name: Install common packages
   apt: name={{ item }} state=present
   with_items:
@@ -34,3 +37,16 @@
   with_items:
     - requests
     - influxdb
+
+- name: Install ntp
+  apt: name=ntp state=present
+  tags: ntp
+
+- name: Configure ntp file
+  template: src=ntp.conf.j2 dest=/etc/ntp.conf
+  tags: ntp
+  notify: restart ntp
+
+- name: Start the ntp service
+  service: name=ntp state=started enabled=yes
+  tags: ntp

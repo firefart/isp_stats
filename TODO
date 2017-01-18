@@ -1,15 +1,4 @@
 - add server metadata?
 - same server every time?
 - change grafana key so cookie can not be created
-
-
-
-
-
-
-[firefart@linux speedtest-cli]$ ./speedtest.py --json
-{"download": 81001579.45724967, "timestamp": "2017-01-16T23:04:37.792922", "ping": 17.473, "upload": 14716678.06787354, "server": {"latency": 17.473, "name": "Vienna", "url": "http://speedtest.nessus.at/speedtest/upload.php", "country": "Austria", "lon": "16.3726", "cc": "AT", "host": "speedtest.nessus.at:8080", "sponsor": "Nessus GmbH (10G Uplink)", "url2": "http://speedtest2.nessus.at/speedtest/upload.php", "lat": "48.2088", "id": "3744", "d": 1.3292411343362884}}
-
-
-https://docs.influxdata.com/influxdb/v1.1/introduction/getting_started/
-<measurement>[,<tag-key>=<tag-value>...] <field-key>=<field-value>[,<field2-key>=<field2-value>...] [unix-nano-timestamp]
+- ntp server in group_vars

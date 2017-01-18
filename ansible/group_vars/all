@@ -1,6 +1,4 @@
 ---
-server_hostname: ispstats.firefart.at
-
 db_name: stats
 
 influxdb_username: admin
