@@ -1,4 +1,2 @@
 - add server metadata?
 - same server every time?
-- change grafana key so cookie can not be created
-- ntp server in group_vars

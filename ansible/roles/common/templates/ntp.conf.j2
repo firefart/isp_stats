@@ -7,10 +7,9 @@ filegen loopstats file loopstats type day enable
 filegen peerstats file peerstats type day enable
 filegen clockstats file clockstats type day enable
 
-server time1.google.com iburst
-server time2.google.com iburst
-server time3.google.com iburst
-server time4.google.com iburst
+{% for host in ntp_servers %}
+server {{ host }} iburst
+{% endfor %}
 
 # By default, exchange time with everybody, but don't allow configuration.
 restrict -4 default kod notrap nomodify nopeer noquery
