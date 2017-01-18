@@ -2,9 +2,8 @@
 db_name: stats
 
 influxdb_username: admin
-influxdb_password: O5FUkS8aqQ9miwFGb8qaAvlmwBG34B
+influxdb_password: "{{ lookup('password', 'influxdb_password chars=ascii_letters length=10') }}"
 
-# password has to be changed manually after setup
 grafana_username: admin
-grafana_password: admin
-grafana_key: 36jPGqwhmXmlx1hLHZLnpjk9dM3R9x
+grafana_password: "{{ lookup('password', 'grafana_password chars=ascii_letters length=10') }}"
+grafana_key: "{{ lookup('password', 'grafana_key chars=ascii_letters,digits,hexdigits') }}"

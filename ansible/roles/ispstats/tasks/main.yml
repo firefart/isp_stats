@@ -3,7 +3,9 @@
 - include: influxdb.yml
 
 # grafana config
-- include: grafana.yml
+- include: grafana_user.yml
+- include: grafana_datasource.yml
+- include: grafana_dashboard.yml
 
 - name: add user
   user:

@@ -28,26 +28,3 @@
     status_code: 200
     body_format: json
   when: grafana_status.status == 404
-
-- name: Delete dashboard
-  uri:
-    url: http://localhost:3000/api/dashboards/db/isp-stats
-    method: DELETE
-    user: "{{ grafana_username }}"
-    password: "{{ grafana_password }}"
-    status_code: 200,404
-    force_basic_auth: yes
-
-- name: Create dashboard
-  uri:
-    url: http://localhost:3000/api/dashboards/db
-    method: POST
-    user: "{{ grafana_username }}"
-    password: "{{ grafana_password }}"
-    status_code: 200
-    body_format: json
-    force_basic_auth: yes
-    body:
-      dashboard: "{{ lookup('template', 'dashboard.json.j2') }}"
-      overwrite: true
-  changed_when: false

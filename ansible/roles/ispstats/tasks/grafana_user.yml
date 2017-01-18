@@ -1,0 +1,9 @@
+---
+- name: Check password
+  uri:
+    url: http://localhost:3000/api/users/1
+    user: "{{ grafana_username }}"
+    password: "{{ grafana_password }}"
+    force_basic_auth: yes
+    status_code: 200
+  changed_when: false

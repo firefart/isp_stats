@@ -3,3 +3,6 @@
 .DS_Store?
 ansible/site.retry
 .vagrant/
+ansible/grafana_key
+ansible/grafana_password
+ansible/influxdb_password
