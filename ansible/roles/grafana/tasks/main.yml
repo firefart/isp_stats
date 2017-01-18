@@ -3,8 +3,10 @@
   apt_key: url=https://packagecloud.io/gpg.key state=present
 
 - name: Add Grafana repository
-  apt_repository: repo='deb https://packagecloud.io/grafana/stable/debian/ jessie main' state=present
-  notify: update apt cache
+  apt_repository:
+    repo: 'deb https://packagecloud.io/grafana/stable/debian/ jessie main'
+    state: present
+    update_cache: yes
 
 - name: Install Grafana packages
   apt: name=grafana state=present

@@ -3,8 +3,10 @@
   apt_key: url=https://repos.influxdata.com/influxdb.key state=present
 
 - name: Add InfluxDB repository
-  apt_repository: repo='deb https://repos.influxdata.com/debian jessie stable' state=present
-  notify: update apt cache
+  apt_repository:
+    repo: 'deb https://repos.influxdata.com/debian jessie stable'
+    state: present
+    update_cache: yes
 
 - name: Install InfluxDB packages
   apt: name=influxdb state=present

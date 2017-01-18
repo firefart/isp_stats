@@ -1,4 +1,3 @@
-- Handler runs after ALL tasks :/
 - add server metadata?
 - same server every time?
 - change grafana key so cookie can not be created

@@ -1,6 +1,3 @@
 ---
 - name: restart influxdb
   systemd: name=influxdb state=restarted enabled=yes
-
-- name: update apt cache
-  apt: update_cache=yes

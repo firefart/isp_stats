@@ -1,6 +1,3 @@
 ---
 - name: restart grafana
   systemd: name=grafana-server state=restarted enabled=yes
-
-- name: update apt cache
-  apt: update_cache=yes
