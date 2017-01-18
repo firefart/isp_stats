@@ -3,7 +3,7 @@ Description=ISP Stats
 
 [Timer]
 OnActiveSec=10s
-OnUnitActiveSec=10m
+OnUnitActiveSec=1h
 
 [Install]
 WantedBy=basic.target
