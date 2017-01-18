@@ -2,10 +2,10 @@
 db_name: stats
 
 influxdb_username: admin
-influxdb_password: "{{ lookup('password', 'influxdb_password chars=ascii_letters length=10') }}"
+influxdb_password: "{{ lookup('password', 'influxdb_password chars=ascii_letters') }}"
 
 grafana_username: admin
-grafana_password: "{{ lookup('password', 'grafana_password chars=ascii_letters length=10') }}"
+grafana_password: "{{ lookup('password', 'grafana_password chars=ascii_letters') }}"
 grafana_key: "{{ lookup('password', 'grafana_key chars=ascii_letters,digits,hexdigits') }}"
 
 ntp_servers:
