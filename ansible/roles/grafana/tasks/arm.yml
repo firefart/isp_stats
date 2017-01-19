@@ -1,0 +1,6 @@
+---
+- name: Installing Grafana
+  apt:
+    deb: "{{ grafana_arm_deb }}"
+    state: present
+  notify: restart grafana

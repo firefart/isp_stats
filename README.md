@@ -24,3 +24,15 @@ The data is written into a time series database ([InfluxDB](https://www.influxda
 
 ## Using Vagrant
 `vagrant up`
+
+## Install on a raspberry pi
+* download raspbian-lite and write image to sdcard https://www.raspberrypi.org/documentation/installation/installing-images/
+* Create empty file in the mounted `boot` partition with name `ssh` without an extension to enable the ssh deamon on start
+* Login via SSH with user `pi` and password `raspberry`
+* sudo raspi-config
+** Expand Filesystem
+** Change User Password
+** Change Locale
+** Change Timezone
+** Finish --> Reboot
+* Run ansible as described above

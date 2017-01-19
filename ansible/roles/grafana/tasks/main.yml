@@ -1,16 +1,12 @@
 ---
-- name: Import Grafana GPG signing key
-  apt_key: url=https://packagecloud.io/gpg.key state=present
+- debug:
+    msg: "Installing Grafana for architecture {{ ansible_architecture }}"
 
-- name: Add Grafana repository
-  apt_repository:
-    repo: 'deb https://packagecloud.io/grafana/stable/debian/ jessie main'
-    state: present
-    update_cache: yes
+- include: x86.yml
+  when: ansible_architecture == "i386" or ansible_architecture == "x86_64"
 
-- name: Install Grafana packages
-  apt: name=grafana state=present
-  notify: restart grafana
+- include: arm.yml
+  when: ansible_architecture == "armv7l" or ansible_architecture == "armv6l"
 
 - name: Copy Grafana configuration
   template: src=grafana.ini.j2 dest=/etc/grafana/grafana.ini
