@@ -8,6 +8,7 @@
   "hideControls": false,
   "id": null,
   "links": [],
+  "refresh": "1h",
   "rows": [
     {
       "collapse": false,
@@ -17,7 +18,7 @@
           "aliasColors": {},
           "bars": false,
           "datasource": "{{ db_name }}",
-          "fill": 1,
+          "fill": 2,
           "id": 1,
           "legend": {
             "alignAsTable": false,
@@ -34,9 +35,9 @@
           "lines": true,
           "linewidth": 1,
           "links": [],
-          "nullPointMode": "connected",
+          "nullPointMode": "null as zero",
           "percentage": false,
-          "pointradius": 5,
+          "pointradius": 1,
           "points": true,
           "renderer": "flot",
           "seriesOverrides": [],
@@ -285,7 +286,7 @@
           "aliasColors": {},
           "bars": false,
           "datasource": "{{ db_name }}",
-          "fill": 1,
+          "fill": 2,
           "id": 3,
           "legend": {
             "avg": true,
@@ -301,7 +302,7 @@
           "links": [],
           "nullPointMode": "connected",
           "percentage": false,
-          "pointradius": 5,
+          "pointradius": 1,
           "points": true,
           "renderer": "flot",
           "seriesOverrides": [],
@@ -503,7 +504,7 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now/w",
     "to": "now"
   },
   "timepicker": {
