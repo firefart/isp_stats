@@ -10,6 +10,9 @@ The data can be used to confront your ISP if your speed is way below the promise
 
 For setting up the machine you need a linux machine because ansible does not run on windows.
 
+The setup runs [speedtest-cli](https://github.com/sivel/speedtest-cli) every hour and collects the stats from the nearest [speedtest.net](http://www.speedtest.net/) server.
+The data is written into a time series database ([InfluxDB](https://www.influxdata.com/time-series-platform/influxdb/)) and displayed in a preconfigured dashboard using [Grafana](http://grafana.org/). You can also export all data from the dashboard as CSV for further offline processing.
+
 ## Using Ansible
 * Install Ansible: http://docs.ansible.com/ansible/intro_installation.html#installing-the-control-machine
 * edit `ansible/hosts` and change IP address
