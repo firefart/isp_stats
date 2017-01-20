@@ -1,0 +1,7 @@
+---
+- name: restart ispstats
+  systemd:
+    state: restarted
+    enabled: yes
+    name: ispstats.timer
+    daemon_reload: yes

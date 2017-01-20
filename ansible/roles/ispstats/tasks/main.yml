@@ -49,6 +49,7 @@
     mode: 0664
     owner: root
     group: root
+  notify: restart ispstats
 
 - name: install ispstats systemd timer file
   template:
@@ -57,9 +58,4 @@
     mode: 0664
     owner: root
     group: root
-
-- name: start ispstats
-  systemd:
-    state: started
-    name: ispstats.timer
-    daemon_reload: yes
+  notify: restart ispstats
