@@ -37,4 +37,5 @@ The data is written into a time series database ([InfluxDB](https://www.influxda
   * Change Locale
   * Change Timezone
   * Finish --> Reboot
+* `mkdir /root/.ssh` and add your public key to `/root/.ssh/authorized_keys`
 * Run ansible as described above
