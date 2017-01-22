@@ -44,3 +44,30 @@ The data is written into a time series database ([InfluxDB](https://www.influxda
   * Finish --> Reboot
 * `mkdir /root/.ssh` and add your public key to `/root/.ssh/authorized_keys`
 * Run ansible as described above
+
+## My Raspberry Pi Configuration:
+* [Raspberry Pi 3](https://www.conrad.at/de/raspberry-pi-3-model-b-1-gb-ohne-betriebssystem-1419716.html)
+* [EDIMAX EU-4306 USB 3.0 Gigabit Ethernet LAN Adapter](https://www.conrad.at/de/netzwerkadapter-1-gbits-edimax-eu-4306-usb-30-lan-101001000-mbits-527532.html)
+* 8GB micro SD card
+* OS is raspbian-lite (no GUI)
+* additional parameters in `/boot/config.txt`:
+
+```
+dtoverlay=pi3-disable-bt
+uart0=off
+uart1=off
+```
+* Disabled drivers in `/etc/modprobe.d/raspi-backlist.conf`:
+
+```
+# wifi
+blacklist brcmfmac
+blacklist brcmutil
+
+# bt
+blacklist btbcm
+blacklist hci_uart
+
+# internal network
+blacklist smsc95xx
+```
