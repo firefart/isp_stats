@@ -45,7 +45,7 @@ The data is written into a time series database ([InfluxDB](https://www.influxda
 * `mkdir /root/.ssh` and add your public key to `/root/.ssh/authorized_keys`
 * Run ansible as described above
 
-## My Raspberry Pi Configuration:
+## My Raspberry Pi Configuration
 * [Raspberry Pi 3](https://www.conrad.at/de/raspberry-pi-3-model-b-1-gb-ohne-betriebssystem-1419716.html)
 * [EDIMAX EU-4306 USB 3.0 Gigabit Ethernet LAN Adapter](https://www.conrad.at/de/netzwerkadapter-1-gbits-edimax-eu-4306-usb-30-lan-101001000-mbits-527532.html)
 * 8GB micro SD card
