@@ -20,12 +20,31 @@
    - exim4-base
    - exim4-config
 
+- name: Check if nfs-common exists
+  stat: path=/etc/init.d/nfs-common
+  register: nfs_status
+
 - name: stop nfs-common
   systemd: name=nfs-common state=stopped enabled=no
+  when: nfs_status.stat.exists
   changed_when: false
+
+- name: Check if rpcbind exists
+  stat: path=/etc/init.d/rpcbind
+  register: rpcbind_status
 
 - name: stop rpcbind
   systemd: name=rpcbind state=stopped enabled=no
+  when: rpcbind_status.stat.exists
+  changed_when: false
+
+- name: Check if hciuart exists
+  stat: path=/etc/init.d/hciuart
+  register: hciuart_status
+
+- name: stop hciuart
+  systemd: name=hciuart state=stopped enabled=no
+  when: hciuart_status.stat.exists
   changed_when: false
 
 - name: install pip

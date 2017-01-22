@@ -2,6 +2,14 @@
 - name: Install nginx
   apt: name=nginx state=present
 
+- name: reduce worker processes
+  replace:
+    name: /etc/nginx/nginx.conf
+    regexp: '^worker_processes \d+;$'
+    replace: "worker_processes 1;"
+    backup: yes
+  notify: restart nginx
+
 - name: Copy nginx configuration
   template: src=default.conf.j2 dest=/etc/nginx/sites-enabled/default
   notify: restart nginx
