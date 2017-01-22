@@ -6,7 +6,7 @@
   replace:
     name: /etc/nginx/nginx.conf
     regexp: '^worker_processes \d+;$'
-    replace: "worker_processes 1;"
+    replace: "worker_processes {{nginx_processes}};"
     backup: yes
   notify: restart nginx
 

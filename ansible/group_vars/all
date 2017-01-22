@@ -1,29 +1,32 @@
 ---
+# influxdb settings
 db_name: stats
-
 influxdb_username: admin
 influxdb_password: "{{ lookup('password', 'influxdb_password chars=ascii_letters') }}"
 
+# grafana settings
 grafana_username: admin
 grafana_password: "{{ lookup('password', 'grafana_password chars=ascii_letters') }}"
 grafana_key: "{{ lookup('password', 'grafana_key chars=ascii_letters,digits,hexdigits') }}"
+grafana_arm_deb : https://github.com/fg2it/grafana-on-raspberry/releases/download/v4.1.1/grafana_4.1.1-1484347088_armhf.deb
 
+# ispstats settings
+ispstats_user: stats
+ispstats_path: /opt/ispstats
+speedtest_cli_path: /opt/speedtest-cli
+speedtest_repo: https://github.com/sivel/speedtest-cli.git
+
+# nginx settings - change if needed
+nginx_processes: 1
+
+# ntp servers. change if needed
 ntp_servers:
   - time1.google.com
   - time2.google.com
   - time3.google.com
   - time4.google.com
 
-ispstats_user: stats
-
-ispstats_path: /opt/ispstats
-speedtest_cli_path: /opt/speedtest-cli
-
-speedtest_repo: https://github.com/sivel/speedtest-cli.git
-
 # how often should the speedtest run?
 #   1h = every 1 hour
 #   10m = every 10 minutes
 run_interval: 1h
-
-grafana_arm_deb : https://github.com/fg2it/grafana-on-raspberry/releases/download/v4.1.1/grafana_4.1.1-1484347088_armhf.deb
