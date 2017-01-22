@@ -53,7 +53,9 @@ The data is written into a time series database ([InfluxDB](https://www.influxda
 * additional parameters in `/boot/config.txt`:
 
 ```
+dtparam=audio=off
 dtoverlay=pi3-disable-bt
+dtoverlay=pi3-disable-wifi
 uart0=off
 uart1=off
 ```
@@ -63,6 +65,7 @@ uart1=off
 # wifi
 blacklist brcmfmac
 blacklist brcmutil
+blacklist cfg80211
 
 # bt
 blacklist btbcm
@@ -70,4 +73,16 @@ blacklist hci_uart
 
 # internal network
 blacklist smsc95xx
+
+# sound
+blacklist snd_bcm2835
+blacklist snd_pcm
+blacklist snd_timer
+blacklist snd
+
+# ipv6
+blacklist ipv6
+
+# gpio
+blacklist bcm2835_gpiomem
 ```
