@@ -54,10 +54,11 @@ The data is written into a time series database ([InfluxDB](https://www.influxda
 
 ```
 dtparam=audio=off
+dtparam=uart0=off
+dtparam=uart1=off
+
 dtoverlay=pi3-disable-bt
 dtoverlay=pi3-disable-wifi
-uart0=off
-uart1=off
 ```
 * Disabled drivers in `/etc/modprobe.d/raspi-backlist.conf`:
 
