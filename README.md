@@ -13,7 +13,7 @@ For setting up the machine you need a linux machine because ansible does not run
 The setup runs [speedtest-cli](https://github.com/sivel/speedtest-cli) every hour and collects the stats from the nearest [speedtest.net](http://www.speedtest.net/) server.
 The data is written into a time series database ([InfluxDB](https://www.influxdata.com/time-series-platform/influxdb/)) and displayed in a preconfigured dashboard using [Grafana](http://grafana.org/). You can also export all data from the dashboard as CSV for further offline processing.
 
-**Hint:** If you want to use a raspberry and have a fast internet connection (>100Mbps) you need an external USB to Gigabit Ethernet adapter as the ethernet interface on the raspberry is only 100Mbs.
+**Hint:** If you want to use a raspberry and have a fast internet connection (>100Mbps) you can not use the internet Ethernet interface as it can only handle 100Mbps at a maximum. I'm currently trying a raspberry setup handling faster traffic (see below).
 
 ## Using Ansible
 * Install python and git
@@ -33,7 +33,7 @@ The data is written into a time series database ([InfluxDB](https://www.influxda
 * download the raspbian-lite zip and extract it https://www.raspberrypi.org/downloads/raspbian/
 * write the extracted image to sdcard https://www.raspberrypi.org/documentation/installation/installing-images/
 * Create an empty file in the mounted `boot` partition with name `ssh` (without an extension) to enable the ssh deamon on start
-* Connect the raspberry using an ethernet cable to your router. Don't use WIFI as it is probably slower than your internet connection and would give false statistics. If your internet connection is faster or around 100Mbps you will need an USB Gigabit Ethernet adapter as the raspberry only has a 10/100 ethernet interface. The adapter will do around 200Mbps maximum because the bus speed is limited but it should work for most home internet connections.
+* Connect the raspberry using an ethernet cable to your router. Don't use WIFI as it is probably slower than your internet connection and would give false statistics. If your internet connection is faster or around 100Mbps you will need an USB Gigabit Ethernet adapter as the raspberry only has a 10/100 ethernet interface. The adapter will do around 200Mbps maximum because the bus speed is limited. Currently the adapter is very unstable when it comes to speed but I'm constantly trying to improve the setup. Once the raspberry is usable I will update this repo. In the meantime you can only test connections <= 100Mbps with a raspberry, for faster connections you need another hardware.
 * Connect power
 * Login via SSH with user `pi` and password `raspberry`
 * sudo raspi-config
@@ -45,7 +45,7 @@ The data is written into a time series database ([InfluxDB](https://www.influxda
 * `mkdir /root/.ssh` and add your public key to `/root/.ssh/authorized_keys`
 * Run ansible as described above
 
-## My Raspberry Pi Configuration
+## My current Raspberry Pi Configuration (not working at full speed at the moment)
 * [Raspberry Pi 3](https://www.conrad.at/de/raspberry-pi-3-model-b-1-gb-ohne-betriebssystem-1419716.html)
 * [EDIMAX EU-4306 USB 3.0 Gigabit Ethernet LAN Adapter](https://www.conrad.at/de/netzwerkadapter-1-gbits-edimax-eu-4306-usb-30-lan-101001000-mbits-527532.html)
 * 8GB micro SD card
