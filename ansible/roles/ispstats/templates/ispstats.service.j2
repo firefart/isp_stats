@@ -1,7 +1,9 @@
 [Unit]
-Description=ISP Stat Script
+Description=isp-stats Service
 
 [Service]
 User={{ ispstats_user }}
 Group={{ ispstats_user }}
+Nice=-20
+SyslogIdentifier=isp-stats
 ExecStart={{ ispstats_path }}/stats.py

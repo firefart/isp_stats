@@ -50,6 +50,7 @@ The data is written into a time series database ([InfluxDB](https://www.influxda
 * [EDIMAX EU-4306 USB 3.0 Gigabit Ethernet LAN Adapter](https://www.conrad.at/de/netzwerkadapter-1-gbits-edimax-eu-4306-usb-30-lan-101001000-mbits-527532.html)
 * 8GB micro SD card
 * OS is raspbian-lite (no GUI)
+* `apt purge triggerhappy``
 * additional parameters in `/boot/config.txt`:
 
 ```
@@ -59,6 +60,9 @@ dtparam=uart1=off
 
 dtoverlay=pi3-disable-bt
 dtoverlay=pi3-disable-wifi
+
+gpu_mem=16
+enable_uart=0
 ```
 * Disabled drivers in `/etc/modprobe.d/raspi-backlist.conf`:
 
@@ -77,13 +81,15 @@ blacklist smsc95xx
 
 # sound
 blacklist snd_bcm2835
-blacklist snd_pcm
-blacklist snd_timer
-blacklist snd
 
 # ipv6
 blacklist ipv6
 
 # gpio
 blacklist bcm2835_gpiomem
+
+# misc
+blacklist bcm2835_wdt
+blacklist uio_pdrv_genirq
+blacklist i2c_dev
 ```

@@ -1,9 +1,9 @@
 [Unit]
-Description=ISP Stats
+Description=isp-stats Timer
 
 [Timer]
-OnActiveSec=10s
-OnUnitActiveSec={{ run_interval }}
+OnCalendar={{ run_interval }}
+Persistent=true
 
 [Install]
 WantedBy=basic.target

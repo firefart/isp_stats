@@ -39,7 +39,7 @@
   changed_when: false
 
 - name: Check if hciuart exists
-  stat: path=/etc/init.d/hciuart
+  stat: path=/lib/systemd/system/hciuart.service
   register: hciuart_status
 
 - name: stop hciuart

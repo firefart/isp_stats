@@ -27,6 +27,5 @@ ntp_servers:
   - time4.google.com
 
 # how often should the speedtest run?
-#   1h = every 1 hour
-#   10m = every 10 minutes
-run_interval: 1h
+#   See https://www.freedesktop.org/software/systemd/man/systemd.time.html#Calendar%20Events for a reference
+run_interval: hourly

@@ -7,10 +7,10 @@ import subprocess
 DATABASE = "{{ db_name }}"
 DB_USER = "{{ influxdb_username }}"
 DB_PW = "{{ influxdb_password }}"
+SPEEDTEST = "{{ speedtest_cli_path }}/speedtest.py"
 
 print("Starting Speedtest...")
-
-p = subprocess.Popen(["{{ speedtest_cli_path }}/speedtest.py", "--json"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+p = subprocess.Popen([SPEEDTEST, "--json"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 stdout, stderr = p.communicate()
 
 errors = []
