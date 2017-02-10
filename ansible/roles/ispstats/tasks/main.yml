@@ -59,6 +59,7 @@
   systemd: name=ispstats.service state=stopped enabled=no
   when: ispstats_service_status.stat.exists
   changed_when: false
+  notify: restart ispstats
 
 - name: install ispstats systemd unit file
   template:
@@ -77,3 +78,10 @@
     owner: root
     group: root
   notify: restart ispstats
+
+- name: enable ispstats timer
+  systemd:
+    enabled: yes
+    name: ispstats.timer
+    daemon_reload: yes
+
