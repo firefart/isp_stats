@@ -8,7 +8,7 @@ influxdb_password: "{{ lookup('password', 'influxdb_password chars=ascii_letters
 grafana_username: admin
 grafana_password: "{{ lookup('password', 'grafana_password chars=ascii_letters') }}"
 grafana_key: "{{ lookup('password', 'grafana_key chars=ascii_letters,digits,hexdigits') }}"
-grafana_arm_deb : https://github.com/fg2it/grafana-on-raspberry/releases/download/v4.1.1/grafana_4.1.1-1484347088_armhf.deb
+grafana_arm_deb : https://github.com/fg2it/grafana-on-raspberry/releases/download/v5.0.2/grafana_5.0.2_armhf.deb
 
 # ispstats settings
 ispstats_user: stats
