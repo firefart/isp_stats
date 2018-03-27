@@ -13,7 +13,7 @@ For setting up the machine you need a linux machine because ansible does not run
 The setup runs [speedtest-cli](https://github.com/sivel/speedtest-cli) every hour and collects the stats from the nearest [speedtest.net](http://www.speedtest.net/) server.
 The data is written into a time series database ([InfluxDB](https://www.influxdata.com/time-series-platform/influxdb/)) and displayed in a preconfigured dashboard using [Grafana](http://grafana.org/). You can also export all data from the dashboard as CSV for further offline processing.
 
-**Hint:** If you want to use a raspberry and have a fast internet connection (>100Mbps) you can not use the internet Ethernet interface as it can only handle 100Mbps at a maximum. I'm currently trying a raspberry setup handling faster traffic (see below).
+**Hint:** If you want to use a raspberry older than model `3 B+` and have a fast internet connection (>100Mbps) you can not use the device as it can only handle 100Mbps at a maximum. To handle greater speeds you need to use a [Raspberry 3 B+](https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/).
 
 ## Using Ansible
 * Install python and git
@@ -33,7 +33,7 @@ The data is written into a time series database ([InfluxDB](https://www.influxda
 * download the raspbian-lite zip and extract it https://www.raspberrypi.org/downloads/raspbian/
 * write the extracted image to sdcard https://www.raspberrypi.org/documentation/installation/installing-images/
 * Create an empty file in the mounted `boot` partition with name `ssh` (without an extension) to enable the ssh deamon on start
-* Connect the raspberry using an ethernet cable to your router. Don't use WIFI as it is probably slower than your internet connection and would give false statistics. If your internet connection is faster or around 100Mbps you will need an USB Gigabit Ethernet adapter as the raspberry only has a 10/100 ethernet interface. The adapter will do around 200Mbps maximum because the bus speed is limited. Currently the adapter is very unstable when it comes to speed but I'm constantly trying to improve the setup. Once the raspberry is usable I will update this repo. In the meantime you can only test connections <= 100Mbps with a raspberry, for faster connections you need another hardware.
+* Connect the raspberry using an ethernet cable to your router. Don't use WIFI as it is probably slower than your internet connection and would give false statistics. If your internet connection is faster or around 100Mbps you will need the use a [Raspberry 3 B+](https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/) or later as older raspberries only have a 10/100 ethernet interface and a shared USB-Bus which limits the overall speed. Model 3B+ added a Gigabit Interface so the device is now able to handle greater speeds.
 * Connect power
 * Login via SSH with user `pi` and password `raspberry`
 * sudo raspi-config
@@ -46,50 +46,6 @@ The data is written into a time series database ([InfluxDB](https://www.influxda
 * Run ansible as described above
 
 ## My current Raspberry Pi Configuration (not working at full speed at the moment)
-* [Raspberry Pi 3](https://www.conrad.at/de/raspberry-pi-3-model-b-1-gb-ohne-betriebssystem-1419716.html)
-* [EDIMAX EU-4306 USB 3.0 Gigabit Ethernet LAN Adapter](https://www.conrad.at/de/netzwerkadapter-1-gbits-edimax-eu-4306-usb-30-lan-101001000-mbits-527532.html)
+* [Raspberry 3 B+](https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/)
 * 8GB micro SD card
 * OS is raspbian-lite (no GUI)
-* `apt purge triggerhappy``
-* additional parameters in `/boot/config.txt`:
-
-```
-dtparam=audio=off
-dtparam=uart0=off
-dtparam=uart1=off
-
-dtoverlay=pi3-disable-bt
-dtoverlay=pi3-disable-wifi
-
-gpu_mem=16
-enable_uart=0
-```
-* Disabled drivers in `/etc/modprobe.d/raspi-backlist.conf`:
-
-```
-# wifi
-blacklist brcmfmac
-blacklist brcmutil
-blacklist cfg80211
-
-# bt
-blacklist btbcm
-blacklist hci_uart
-
-# internal network
-blacklist smsc95xx
-
-# sound
-blacklist snd_bcm2835
-
-# ipv6
-blacklist ipv6
-
-# gpio
-blacklist bcm2835_gpiomem
-
-# misc
-blacklist bcm2835_wdt
-blacklist uio_pdrv_genirq
-blacklist i2c_dev
-```
