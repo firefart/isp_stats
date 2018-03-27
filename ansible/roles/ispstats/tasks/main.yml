@@ -1,11 +1,11 @@
 ---
 # influxdb config
-- include: influxdb.yml
+- include_tasks: influxdb.yml
 
 # grafana config
-- include: grafana_user.yml
-- include: grafana_datasource.yml
-- include: grafana_dashboard.yml
+- include_tasks: grafana_user.yml
+- include_tasks: grafana_datasource.yml
+- include_tasks: grafana_dashboard.yml
 
 - name: add user
   user:

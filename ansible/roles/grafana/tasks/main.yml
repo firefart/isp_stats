@@ -2,10 +2,10 @@
 - debug:
     msg: "Installing Grafana for architecture {{ ansible_architecture }}"
 
-- include: x86.yml
+- include_tasks: x86.yml
   when: ansible_architecture == "i386" or ansible_architecture == "x86_64"
 
-- include: arm.yml
+- include_tasks: arm.yml
   when: ansible_architecture == "armv7l" or ansible_architecture == "armv6l"
 
 - name: Copy Grafana configuration

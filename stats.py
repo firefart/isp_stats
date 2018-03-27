@@ -40,7 +40,6 @@ if j:
             "server_sponsor": j["server"]["sponsor"],
             "server_latency": j["server"]["latency"],
             "server_url": j["server"]["url"],
-            "server_url2": j["server"]["url2"],
             "server_country": j["server"]["country"],
             "server_cc": j["server"]["cc"],
             "server_lon": j["server"]["lon"],
